@@ -93,7 +93,7 @@ cs('.pizzaInfo--size').forEach((size,sizeIndex)=>{          //efeito de click no
 
 const atualizaQTPizza = () =>{                               //atualiza quantidade de pizzas no modal
     document.querySelector('.pizzaInfo--qt').innerHTML = modalQt;
-    c('.pizzaInfo--actualPrice').innerHTML = `R$ ${(pizzaJson[key].price * modalQt).toFixed(2)}`
+    c('.pizzaInfo--actualPrice').innerHTML = `R$ ${(pizzaJson[key].price * modalQt).toFixed(2)}` //atualiza preço subtotal item
 }
 
 c('.pizzaInfo--addButton').addEventListener('click', () =>{  //adiciona pizza ao carrinho   
@@ -117,6 +117,16 @@ c('.pizzaInfo--addButton').addEventListener('click', () =>{  //adiciona pizza ao
     }
 
     
-    console.log(cart);
+    updateCart();
     closeModal(); //depois de adicionar fecha o modal
 })  
+
+
+const updateCart = () =>{
+    if(cart.length > 0){
+        c('aside').classList.add('show');
+    } else {
+        c('aside').classList.remove('show');
+    }
+}
+
