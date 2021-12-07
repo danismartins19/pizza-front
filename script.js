@@ -121,8 +121,19 @@ c('.pizzaInfo--addButton').addEventListener('click', () =>{  //adiciona pizza ao
     closeModal(); //depois de adicionar fecha o modal
 })  
 
+c('.menu-openner').addEventListener('click', ()=>{
+    if(cart.length > 0){
+        c('aside').style.left = '0';
+    }
+})
+
+c('.menu-closer').addEventListener('click', (item)=>{
+    c('aside').style.left = '100vw';
+})
 
 const updateCart = () =>{
+    c('.menu-openner span').innerHTML = cart.length;
+
     if(cart.length > 0){
         c('aside').classList.add('show');
         c('.cart').innerHTML = '';
@@ -161,7 +172,7 @@ const updateCart = () =>{
 
             cartItem.querySelector('.cart--item-qtmenos').addEventListener('click', () =>{
                 if(cart[i].qt > 1){
-                    cart[i].qt = cart[i].qt--;                    
+                    cart[i].qt --;                   
                 } else {
                     cart.splice(i,1);                    
                 }
@@ -169,7 +180,7 @@ const updateCart = () =>{
             }) 
 
             cartItem.querySelector('.cart--item-qtmais').addEventListener('click', () =>{
-                cart[i].qt = cart[i].qt++;
+                cart[i].qt ++;
                 updateCart();
             })
             
@@ -187,6 +198,6 @@ const updateCart = () =>{
 
     } else {
         c('aside').classList.remove('show');
+        c('aside').style.left = '100vw';
     }
 }
-
